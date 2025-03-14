@@ -53,13 +53,33 @@ class logisticRegression:
         self, data: np.ndarray, labal: np.ndarray, theta: np.ndarray, max_iter: int
     ) -> list:
         cost_list = []
-        minimize(lambda cur_theta: self.cost_fc(data, labal))
+        theta = theta.reshape(self.num_features, 1)
+        res = minimize(
+            fun=lambda cur_theta: self.cost_fc(data, labal,theta),
+            x0=theta,
+            method='CG',
+            jac=lambda cur_theta: logisticRegression.gradient_step(data,labal,theta),
+            callback=lambda cur_theta:cost_list.append(logisticRegression.cost_fc(data, labal,theta)), 
+            options={'maxiter':max_iter}
+            )
+        if not res.success:
+            raise Exception("minimize failed")
+        return res.x, cost_list
 
     def cost_fc(self, data: np.ndarray, labels: np.ndarray):
-        hypothesis = logisticRegression.hypothesis(data, labels)
+        hypothesis = logisticRegression.hypothesis(data, self.theta)
 
-    def gradient_step(self, alpha: float) -> None:
-        pass
+        y_is_set = np.dot(labels[labels == 1].T,np.log(hypothesis[labels == 1]))
+        y_is_not_set = np.dot(1 - labels[labels == 0].T,np.log(1 -hypothesis[labels == 0]))
+        cost = (-1/self.num_features) * (y_is_set + y_is_not_set)
+        return cost
+
+    @staticmethod
+    def gradient_step(data,labal,theta) -> None:
+        num_features = data.shape[0]
+        hypothesis = logisticRegression.hypothesis(data, theta)
+        hy_diff = hypothesis -labal
+        gredients = (1/num_features) * np.dot(data.T, hy_diff)
 
     @staticmethod
     def hypothesis(data: np.ndarray, theta: np.ndarray):
@@ -71,4 +91,16 @@ class logisticRegression:
         pass
 
     def predict(self, data: np.ndarray):
-        pass
+        data_processed, _, _ = prepare_for_training(
+            data,
+            polynomial_degree=self.polynomial_degree,
+            sinusoid_degree=self.sinusoid_degree,
+            normalize_data=self.normalize_data,
+        )
+        prob = logisticRegression.hypothesis(data_processed, self.theta.T)
+        max_prob_index = np.argmax(prob)
+        class_prediction = np.empty(max_prob_index.shape,dtype=object)
+        for index,data in enumerate(max_prob_index):
+            class_prediction[max_prob_index == index] = data
+        return class_prediction
+
