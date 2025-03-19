@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5dde1f47-6202-4692-a17b-39a180bff576" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/random_forest.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ML.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ML.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projects/neural_network.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tree.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/tree.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +17,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Jupyter Notebook" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -32,12 +30,12 @@
     &quot;assignee&quot;: &quot;kalaxiaoke777&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/kalaxiaoke777/ML.git",
-    "accountId": "1ffe540c-319b-437d-a8b6-13582aee966b"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/kalaxiaoke777/ML.git&quot;,
+    &quot;accountId&quot;: &quot;1ffe540c-319b-437d-a8b6-13582aee966b&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
